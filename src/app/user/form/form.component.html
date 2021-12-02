@@ -1,0 +1,59 @@
+<div class="text-center mt-5">
+  <h2>Material Form</h2>
+  <form [formGroup]="example">
+    <mat-form-field appearance="fill">
+      <mat-label> Enter Name </mat-label>
+      <input matInput class="form-control" formControlName="name">
+    </mat-form-field>
+    <br>
+
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input type="number" matInput class="form-control" formControlName="number">
+
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" class="form-control" formControlName="email" required>
+      <mat-error *ngIf="this.example.get('email').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <br>
+    <mat-radio-group aria-label="Select an option" class="mt-5">
+      <mat-radio-button value="1" class="me-3">Indian</mat-radio-button>
+      <mat-radio-button value="2">NRI</mat-radio-button>
+    </mat-radio-group>
+
+    <br>
+    <mat-form-field class="example-full-width mt-3" appearance="fill">
+      <mat-label>Address</mat-label>
+      <textarea matInput placeholder="Building no, society, colony, area, city" class="form-control"
+        formControlName="address"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label> Select Gender </mat-label>
+      <mat-select>
+        <mat-option value="Male"> Male </mat-option>
+        <mat-option value="Female"> Female </mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+    <br>
+    <mat-checkbox color="accent" class="me-5">
+      Frontend Development
+    </mat-checkbox>
+    <mat-checkbox color="primary" class="mb-4">
+      Backend Development
+    </mat-checkbox>
+    <br>
+
+
+
+  </form>
+
+</div>
