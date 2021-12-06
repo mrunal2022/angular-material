@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 8px 8px 8px 0;
+  }
+  th.mat-header-cell {
+    text-align: center;
+}

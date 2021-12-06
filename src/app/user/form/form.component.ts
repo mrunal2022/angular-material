@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
   example = new FormGroup({
     name: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
-    number: new FormControl("", Validators.required),
+    no: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required)
 
   })

@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { userTable } from './table/table.component';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UserService implements OnInit {
 
   ];
   private subject = new BehaviorSubject(this.userData);
+  startedEditing = new Subject<number>();
   users$: Observable<userTable[]> = this.subject.asObservable(
 
   )
@@ -28,7 +30,22 @@ export class UserService implements OnInit {
   }
   postUser(user: userTable) {
     this.userData.push(user);
-    this.subject.next(this.userData);
+    this.subject.next(this.userData.slice());
+  }
+  getUserId(index: number) {
+    return this.userData[index];
+  }
+  deleteUser(email) {
+    const index = _.findIndex(this.userData, { email: email });
+    this.userData.splice(index, 1);
+    this.subject.next(this.userData.slice());
+  }
+  editUser(email) {
+    const index = _.findIndex(this.userData, { email: email });
+
+
+
+
   }
 
 }

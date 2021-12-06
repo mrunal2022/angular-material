@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../user.service';
 export interface userTable {
@@ -23,11 +24,15 @@ const userData: userTable[] = [
 export class TableComponent implements OnInit {
   @Input('userList') users: any;
   public subscription: Subscription;
+  editedUserIndex: number;
   dataSource: any;
-  displayedColumns: string[] = ['email', 'name', 'no', 'address'];
+  displayForm = false;
+  email: string;
+  displayedColumns: string[] = ['email', 'name', 'no', 'address', 'actions'];
 
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private route: ActivatedRoute,
+    private router: Router) { }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.users.currentValue != undefined && changes.users.currentValue != null) {
       this.dataSource = changes.users.currentValue
@@ -35,15 +40,32 @@ export class TableComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.subscription = this.userService.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editedUserIndex = index;
 
-    /*this.subscription = this.userService.users$.subscribe(val => {
-      console.log(val)
-      this.dataSource = val;
-    }
-    )
 
-  */
+
+        }
+      );
+
+
+
+  }
+  onedit(email) {
+
+    this.userService.editUser(email);
+
+
+  }
+  ondelete(email) {
+    console.log(email);
+
+    this.userService.deleteUser(email);
+
+
   }
 
 }

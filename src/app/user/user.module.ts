@@ -14,6 +14,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UserComponent } from './user.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+
+
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatIconModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -39,4 +43,7 @@ import { MatTableModule } from '@angular/material/table';
     MatRadioModule
   ]
 })
-export class UserModule { }
+export class UserModule {
+
+
+}
