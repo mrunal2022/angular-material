@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+  @Output('add-User') addUser = new EventEmitter()
+
 
   constructor() { }
 
@@ -26,6 +28,10 @@ export class FormComponent implements OnInit {
     }
 
     return this.example.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
+  onSubmit() {
+    this.addUser.emit(this.example.getRawValue())
+
   }
 
 }

@@ -6,13 +6,14 @@ import { FormComponent } from './form/form.component';
 import { TableComponent } from './table/table.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -20,14 +21,18 @@ import { UserComponent } from './user/user.component';
     FormComponent,
     TableComponent,
     UserComponent
+
   ],
   imports: [
     CommonModule,
+    MatTableModule,
+
     UserRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    BrowserAnimationsModule,
+    MatButtonModule,
+
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,

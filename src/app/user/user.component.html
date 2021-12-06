@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <app-form (add-User)="addUser($event)"></app-form>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <app-table [userList]="users$ | async"></app-table>
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+</div>
