@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <app-form (add-User)="addUser($event)"></app-form>
+      <app-form (add-User)="addUser($event)" [userToEdit]="userToEdit"></app-form>
 
     </div>
 
@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col">
-      <app-table [userList]="users$ | async"></app-table>
+      <app-table [userList]="users$ | async" (UserEdit)="edit($event)"></app-table>
 
 
     </div>

@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { userTable } from './table/table.component';
 import * as _ from 'lodash';
 
@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 })
 
 export class UserService implements OnInit {
+  subscription: Subscription;
   userData: userTable[] = [
     { email: 'mrunal@gmail.com', name: 'mrunal ghodke', no: 779857127, address: 'pune' },
     { email: 'janvi@gmail.com', name: 'janvi sharma', no: 998857127, address: 'delhi' },
@@ -23,7 +24,9 @@ export class UserService implements OnInit {
 
 
   constructor() { }
-  ngOnInit(): void {
+  ngOnInit() {
+
+
 
 
 
@@ -40,9 +43,13 @@ export class UserService implements OnInit {
     this.userData.splice(index, 1);
     this.subject.next(this.userData.slice());
   }
-  editUser(email) {
-    const index = _.findIndex(this.userData, { email: email });
+  editUser(user: userTable) {
+    const index = _.findIndex(this.userData, { email: user.email });
+    this.userData.splice(index, 1, user);
 
+    console.log(index, user);
+
+    this.subject.next(this.userData.slice());
 
 
 

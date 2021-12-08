@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../user.service';
@@ -22,12 +22,12 @@ const userData: userTable[] = [
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  @Output('UserEdit') userEdit = new EventEmitter();
   @Input('userList') users: any;
   public subscription: Subscription;
   editedUserIndex: number;
   dataSource: any;
   displayForm = false;
-  email: string;
   displayedColumns: string[] = ['email', 'name', 'no', 'address', 'actions'];
 
 
@@ -56,7 +56,10 @@ export class TableComponent implements OnInit {
   }
   onedit(email) {
 
-    this.userService.editUser(email);
+    //this.userService.editUser(email);
+    this.userEdit.emit(email);
+
+
 
 
   }

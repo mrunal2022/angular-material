@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { userTable } from './table/table.component';
 import { UserService } from './user.service';
+import * as _ from 'lodash';
+import { _fixedSizeVirtualScrollStrategyFactory } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +15,7 @@ export class UserComponent implements OnInit {
   dataSource: any;
   users: userTable[];
   users$: Observable<userTable[]>
+  userToEdit: userTable;
 
 
   constructor(public userService: UserService) { }
@@ -30,6 +33,12 @@ export class UserComponent implements OnInit {
   addUser($event) {
     console.log('add user event', $event);
     this.userService.postUser($event);
+  }
+
+  edit($event) {
+    console.log('edit log msg', $event);
+    this.userToEdit = _.find(this.users, { email: $event })
+    console.log(this.userToEdit);
   }
 
 }
